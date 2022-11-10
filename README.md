@@ -1,2 +1,2 @@
-# taskin-app
-A simple ToDo app for macOs, Android and web. Meant for personal use
+# TaskIn
+A simple ToDo app for macOS, Android and web. Meant for personal use
