@@ -1,0 +1,23 @@
+.page-title {
+    @apply font-black text-2xl md:text-3xl;
+}
+
+ion-modal ion-title {
+    @apply text-lg leading-9 lg:text-xl lg:leading-10;
+}
+
+.card-color-light {
+    @apply bg-white text-slate-600 border-l-4 border-sky-100
+}
+
+.card-color-yellow {
+    @apply bg-yellow-200 text-slate-800 border-l-4 border-yellow-300
+}
+
+.card-color-orange {
+    @apply bg-orange-300 text-slate-800 border-l-4 border-orange-400
+}
+
+.card-color-red {
+    @apply bg-red-500 text-white border-l-4 border-red-600
+}

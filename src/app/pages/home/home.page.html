@@ -1,9 +1,43 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title size="large">Tasks</ion-title>
+        <ion-buttons slot="start">
+            <!-- <ion-menu-toggle [autoHide]="false">
+                <ion-button><ion-icon name="menu" slot="icon-only"></ion-icon></ion-button>
+            </ion-menu-toggle> -->
+            <ion-menu-button [autoHide]="false"></ion-menu-button>
+            <!-- <ion-back-button color=""></ion-back-button> -->
+        </ion-buttons>
+        <ion-title size="large"></ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="w-full px-2 md:px-8 py-2">
+        <div class="page-title">
+            Aujourd'hui
+        </div>
 
+        <div class="my-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            </div>
+
+            <ngx-masonry [options]="gridOptions">
+                <div ngxMasonryItem *ngFor="let task of tasks" class="p-2 w-full md:w-1/2 lg:w-1/3">
+                    <app-task-card [task]="task"></app-task-card>
+                </div>
+            </ngx-masonry>
+        </div>
+
+        <ion-fab slot="fixed" vertical="bottom" horizontal="center" class="lg:mb-8 lg:mr-8">
+            <ion-fab-button (click)="addTask()" id="open-add-modal">
+                <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+
+        <ion-modal [keepContentsMounted]="true" trigger="open-add-modal" #addModal [initialBreakpoint]="0.90" [breakpoints]="[0, 0.90]">
+            <ng-template>
+                <app-task-creation class="h-full"></app-task-creation>
+            </ng-template>
+        </ion-modal>
+    </div>
 </ion-content>
