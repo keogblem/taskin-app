@@ -1,11 +1,17 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { isEmpty } from 'src/library/utils';
+import { v4 as uuidv4 } from 'uuid';
+import * as dayjs from 'dayjs';
 
 export class Task {
     id: number;
+    uuid: string;
     title: string;
-    text: string;
+    description: string;
+    project: string;
+    list: Array<{ label: string; done: boolean }> = [];
     created_at;
+    created_at_timestamp;
     updated_at;
     completed_at;
     start_at;
@@ -14,30 +20,37 @@ export class Task {
     priorityLabel: string;
     status = 0;
     statusLabel: string;
-    category;
     tags: any[];
-    today: boolean;
+    today = false;
+    isOverdue = false;
 
     constructor(data: Record<string, any> = null) {
         if (!isEmpty(data)) {
             Object.assign(this, data);
         }
+
+        this.process();
     }
 
     process() {
-        this.today = !!this.today;
+        // this.today = !!this.today;
+
+        if (isEmpty(this.uuid)) {
+            this.uuid = uuidv4();
+        }
 
         this.priorityLabel = availablePriorities[this.priority];
 
         this.statusLabel = availableStatuses[this.status];
+
+        this.isOverdue = dayjs(this.due_at).isBefore(dayjs());
     }
 }
 
 export const availablePriorities = {
-    1: 'low',
-    2: 'normal',
-    3: 'important',
-    4: 'emergency',
+    1: 'normal',
+    2: 'important',
+    3: 'emergency',
 };
 
 export const availableStatuses = {
@@ -45,5 +58,5 @@ export const availableStatuses = {
     1: 'started',
     2: 'completed',
     3: 'postponed',
-    4: 'postponed',
+    4: 'deleted',
 };

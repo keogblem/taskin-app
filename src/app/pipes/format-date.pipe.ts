@@ -5,7 +5,6 @@ import 'dayjs/locale/fr';
 @Pipe({
     name: 'formatDate',
 })
-
 export class FormatDatePipe implements PipeTransform {
     transform(date: string, type?) {
         if (date == null) {
@@ -20,6 +19,9 @@ export class FormatDatePipe implements PipeTransform {
                 break;
             case 2:
                 format = 'DD/MM/YYYY';
+                break;
+            case 3:
+                format = 'DD MMM';
                 break;
         }
 
