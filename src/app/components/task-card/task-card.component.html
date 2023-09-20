@@ -1,6 +1,66 @@
-<div class="rounded-md p-4 shadow-md card-color-{{ color }}">
-    <h2 class="text-lg font-bold">{{ task.title }}</h2>
-    <p class="text-sm leading-snug opacity-80 font-normal">
+<div class="py-4 md:py-5 px-4 md:px-6 shadow-none task-card flex flex-col">
+    <div class="flex justify-between items-center">
+        <div *ngIf="task.project"
+             class="mb-1 flex space-x-2 items-center w-auto rounded-none bg-black bg-opacity-[0.0] text-sm sm:text-base text-slate-500">
+            <ion-icon name="folder-open-outline" class="opacity-70"></ion-icon>
+            <span class="uppercase font-normal leading-none">{{ task.project ?? '—' }}</span>
+        </div>
+        <div class="">
+            <ion-button (click)="showActionsDropdown($event)" size="small" slot="icon-only" fill="clear" color="medium" class="absolute right-3 bottom-6">
+                <ion-icon name="ellipsis-vertical" class="text-slate-600"></ion-icon>
+            </ion-button>
+            <ion-popover #popover [isOpen]="openActionsDropdown" (didDismiss)="openActionsDropdown = false" [dismissOnSelect]="true" side="left">
+                <ng-template>
+                    <ion-content>
+                        <ion-list class="p-3">
+                            <ion-item [button]="true" [detail]="false" (click)="launchTaskEdit()">
+                                <ion-icon name="create-outline" slot="start" color="primary" style="margin-inline-end: 16px"></ion-icon>
+                                <span class="text-base font-medium ">Modifier</span>
+                            </ion-item>
+                            <ion-item [button]="true" [detail]="false" (click)="markTaskAsCompleted()">
+                                <ion-icon name="checkmark-circle-outline" slot="start" color="primary" style="margin-inline-end: 16px"></ion-icon>
+                                <span class="text-base font-medium ">Marq. Terminé</span>
+                            </ion-item>
+                            <ion-item [button]="true" [detail]="false" (click)="deleteTask()">
+                                <ion-icon name="trash-outline" slot="start" color="danger" style="margin-inline-end: 16px"></ion-icon>
+                                <span class="text-base font-medium ">Supprimer</span>
+                            </ion-item>
+                        </ion-list>
+                    </ion-content>
+                </ng-template>
+            </ion-popover>
+        </div>
+    </div>
+
+
+    <h2 class="text-[20px] sm:text-[24px] leading-[1.1] font-extrabold mb-2 mt-2">
+        {{ task.title }}
+    </h2>
+
+    <!-- <p class="text-lg leading-snug opacity-90 font-normal">
         {{ task.text }}
-    </p>
+    </p> -->
+
+    <div *ngIf="task.list.length > 0" class="">
+        <div *ngFor="let item of task.list" class="flex items-center">
+            <ion-icon [name]="item.done ? 'checkmark-circle' : 'ellipse-outline'" class="w-8 text-lg"></ion-icon>
+            <span class="text-base text-ellipsis">{{ item.label }}</span>
+        </div>
+    </div>
+
+    <div class="mt-auto mb-0 pt-4 space-x-2 flex items-center">
+        <div *ngIf="task.priority > 1" class="py-1.5 px-2 inline-flex items-center rounded text-sm"
+            [ngClass]="{'text-red-600 bg-red-50': task.priorityLabel === 'emergency', 'text-amber-600 bg-amber-50': task.priorityLabel === 'important'}">
+            <ion-icon name="hand-right-outline" class="text-base"></ion-icon>
+            <span *ngIf="task.priorityLabel === 'emergency'"
+                class="ml-1 uppercase font-family-condensed font-medium leading-none">Urgent</span>
+        </div>
+        <div *ngIf="task.isOverdue" class="py-1.5 px-2 inline-flex items-center rounded bg-red-500 text-sm text-white">
+            <ion-icon name="warning" class="text-base"></ion-icon>
+            <span class="ml-1 uppercase font-family-condensed font-medium leading-none">Retard</span>
+        </div>
+        <div class="py-1.5 px-2 inline-flex items-center rounded bg-gray-50 text-slate-600 text-sm font-medium">
+            {{ task.due_at | formatDate:3 }}
+        </div>
+    </div>
 </div>

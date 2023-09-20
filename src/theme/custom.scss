@@ -1,23 +1,33 @@
+.font-family-condensed {
+    //font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
 .page-title {
-    @apply font-black text-2xl md:text-3xl;
+    @apply font-black text-4xl md:text-5xl text-slate-600;
 }
 
 ion-modal ion-title {
     @apply text-lg leading-9 lg:text-xl lg:leading-10;
 }
 
-.card-color-light {
-    @apply bg-white text-slate-600 border-l-4 border-sky-100
+.task-card {
+    background-color: #FFFFFF;
+    //background-color: #fef5ad;
+    @apply text-slate-600 shadow border-none border-black border-opacity-5 rounded-md; //sm:min-h-[240px];
 }
 
-.card-color-yellow {
-    @apply bg-yellow-200 text-slate-800 border-l-4 border-yellow-300
-}
+// .card-color-low {
+//     @apply bg-slate-100 text-slate-700 border-l-4 border-slate-200;
+// }
 
-.card-color-orange {
-    @apply bg-orange-300 text-slate-800 border-l-4 border-orange-400
-}
+// .card-color-normal {
+//     @apply bg-sky-200 text-slate-800 border-l-4 border-sky-300;
+// }
 
-.card-color-red {
-    @apply bg-red-500 text-white border-l-4 border-red-600
-}
+// .card-color-important {
+//     @apply bg-amber-200 text-slate-800 border-l-4 border-amber-300;
+// }
+
+// .card-color-emergency {
+//     @apply bg-red-200 text-slate-800 border-l-4 border-red-600;
+// }

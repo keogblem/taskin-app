@@ -42,18 +42,26 @@
     }
 }
 
-ion-header {
-    ion-toolbar {
-        --background: rgba(var(--ion-color-primary-rgb), 0.05);
+ion-router-outlet {
+    ion-header {
+        ion-toolbar {
+            --background: theme(colors.gray.100);
+        }
+
+        ion-title {
+            font-weight: 900;
+        }
     }
 
-    ion-title {
-        font-weight: 900;
+    ion-content {
+        --background: theme(colors.gray.100);
     }
 }
 
-.header-md::after {
-    background-image: none;
+ion-header {
+    &.header-md, &.heander-ios {
+        @apply shadow-none;
+    }
 }
 
 .swiper-pagination-bullet {
@@ -70,4 +78,8 @@ ion-header {
 }
 .sc-ion-alert-md-h {
     --max-width: 300px;
+}
+
+ion-icon[slot="start"] {
+    margin-inline-end: 16px;
 }

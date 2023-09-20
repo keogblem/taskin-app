@@ -1,3 +1,11 @@
 ion-item {
     --padding-start: 0;
 }
+
+ion-item,
+ion-input,
+ion-textarea {
+    .label-text-wrapper {
+        font-weight: 700;
+    }
+}
