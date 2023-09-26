@@ -9,8 +9,8 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomePageModule } from './pages/home/home.module';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { HomePageModule } from './pages/home/home.module';
 // import { ComponentsModule } from './components/components.module';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
         AppRoutingModule,
         NgxMasonryModule,
         BrowserAnimationsModule,
-        HomePageModule
+        HomePageModule,
     ],
     providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
     bootstrap: [AppComponent],

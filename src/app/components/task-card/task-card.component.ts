@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
 import { Task } from 'src/app/entities/task';
 import { TaskService } from 'src/app/services/task.service';
 
@@ -10,10 +9,16 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TaskCardComponent implements OnInit {
     @Input() task: Task;
-    @ViewChild('popover') popover;
+    @Input() hideProjectLabel = false;
+
+    @ViewChild('popover') popover: { event: Event; };
     openActionsDropdown = false;
 
-    constructor(private taskService: TaskService, private popoverCtrl: PopoverController) {}
+    constructor(
+        private taskService: TaskService,
+        // private popoverCtrl: PopoverController
+    ) {
+    }
 
     ngOnInit() {
         // this.color = this.task.priorityLabel;
@@ -26,7 +31,7 @@ export class TaskCardComponent implements OnInit {
     }
 
     showActionsDropdown(e: Event) {
-        this.popover.event = e;
+        this.popover.event       = e;
         this.openActionsDropdown = true;
     }
 

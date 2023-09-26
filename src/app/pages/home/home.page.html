@@ -16,14 +16,16 @@
 
 <ion-content>
     <div class="w-full px-2 md:px-8 py-2">
-        <div class="page-title ml-2">
-            Aujourd'hui
+        <div class="page-title ml-2 flex items-center">
+            <ion-icon *ngIf="project" name="folder-open-outline" class="opacity-70 mr-4"></ion-icon>
+            <span *ngIf="project">{{ project }}</span>
+            <span *ngIf="! project">"Aujourd'hui"</span>
         </div>
 
         <div class="my-8">
             <ngx-masonry [options]="gridOptions" [updateLayout]="updateMasonryLayout" [ordered]="true">
                 <div ngxMasonryItem *ngFor="let task of tasks" class="p-1 sm:p-2 w-full sm:max-w-sm">
-                    <app-task-card [task]="task"></app-task-card>
+                    <app-task-card [task]="task" [hideProjectLabel]="!!project"></app-task-card>
                 </div>
             </ngx-masonry>
 

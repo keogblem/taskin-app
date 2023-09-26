@@ -2,20 +2,35 @@
     <ion-split-pane contentId="main-content" when="xl">
         <ion-menu contentId="main-content" type="overlay">
             <ion-content>
-                <ion-list id="inbox-list">
+                <ion-list id="inbox-list" lines="none">
                     <ion-list-header>TASKIN</ion-list-header>
                     <ion-note>Olivier G.</ion-note>
 
-                    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                        <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-                            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-                            <ion-label>{{ p.title }}</ion-label>
+                    <!--<div class="my-4 border-t-2 border-slate-200"></div>-->
+                    <!--<ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">-->
+                    <!--    <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">-->
+                    <!--        <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>-->
+                    <!--        <ion-label>{{ p.title }}</ion-label>-->
+                    <!--    </ion-item>-->
+                    <!--</ion-menu-toggle>-->
+
+                    <ion-item routerDirection="root" routerLink="/home" lines="none" detail="false" routerLinkActive="selected">
+                        <ion-icon slot="start" name="star-outline"></ion-icon>
+                        <ion-label>Aujourd'hui</ion-label>
+                        <ion-note slot="end" class="pt-3 pb-2 !text-sm">{{ todayCount }}</ion-note>
+                    </ion-item>
+                    <ion-menu-toggle auto-hide="false" *ngFor="let p of projects">
+                        <ion-item routerDirection="root" [routerLink]="'/project/'+ p.name" lines="none" detail="false" routerLinkActive="selected">
+                            <ion-icon slot="start" name="folder-open-outline"></ion-icon>
+                            <ion-label>{{ p.name }}</ion-label>
+                            <ion-note slot="end" class="pt-3 pb-2 !text-sm">{{ p.count }}</ion-note>
                         </ion-item>
                     </ion-menu-toggle>
                 </ion-list>
 
             </ion-content>
         </ion-menu>
+
         <ion-router-outlet id="main-content"></ion-router-outlet>
     </ion-split-pane>
 </ion-app>

@@ -11,12 +11,22 @@ const routes: Routes = [
     {
         path: 'home',
         component: HomePage
+    },
+    {
+        path: 'project/:project',
+        component: HomePage
     }
 ];
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+        RouterModule.forRoot(
+            routes,
+            {
+                preloadingStrategy: PreloadAllModules,
+                onSameUrlNavigation: 'reload'
+            }
+        )
     ],
     exports: [RouterModule]
 })

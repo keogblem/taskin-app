@@ -1,6 +1,6 @@
 <div class="py-4 md:py-5 px-4 md:px-6 shadow-none task-card flex flex-col">
     <div class="flex justify-between items-center">
-        <div *ngIf="task.project"
+        <div *ngIf="task.project && !hideProjectLabel"
              class="mb-1 flex space-x-2 items-center w-auto rounded-none bg-black bg-opacity-[0.0] text-sm sm:text-base text-slate-500">
             <ion-icon name="folder-open-outline" class="opacity-70"></ion-icon>
             <span class="uppercase font-normal leading-none">{{ task.project ?? '—' }}</span>
@@ -48,19 +48,19 @@
         </div>
     </div>
 
-    <div class="mt-auto mb-0 pt-4 space-x-2 flex items-center">
-        <div *ngIf="task.priority > 1" class="py-1.5 px-2 inline-flex items-center rounded text-sm"
-            [ngClass]="{'text-red-600 bg-red-50': task.priorityLabel === 'emergency', 'text-amber-600 bg-amber-50': task.priorityLabel === 'important'}">
+    <div class="mt-auto mb-0 pt-4 space-x-2 flex items-center flex-wrap">
+        <div *ngIf="task.priority > 1" class="py-1.5 px-2 my-1 inline-flex items-center rounded text-sm font-medium uppercase leading-none"
+             [ngClass]="{'text-red-600 bg-red-50': task.priorityLabel === 'emergency', 'text-amber-600 bg-amber-100': task.priorityLabel === 'important'}">
             <ion-icon name="hand-right-outline" class="text-base"></ion-icon>
-            <span *ngIf="task.priorityLabel === 'emergency'"
-                class="ml-1 uppercase font-family-condensed font-medium leading-none">Urgent</span>
+            <span *ngIf="task.priorityLabel === 'emergency'" class="ml-1.5">Urgent</span>
         </div>
-        <div *ngIf="task.isOverdue" class="py-1.5 px-2 inline-flex items-center rounded bg-red-500 text-sm text-white">
+        <div *ngIf="task.isOverdue" class="py-1.5 px-2 my-1 inline-flex items-center rounded text-sm bg-red-500 text-white font-medium uppercase leading-none">
             <ion-icon name="warning" class="text-base"></ion-icon>
-            <span class="ml-1 uppercase font-family-condensed font-medium leading-none">Retard</span>
+            <span class="ml-1.5">Retard</span>
         </div>
-        <div class="py-1.5 px-2 inline-flex items-center rounded bg-gray-50 text-slate-600 text-sm font-medium">
-            {{ task.due_at | formatDate:3 }}
+        <div class="py-1.5 px-2 my-1 inline-flex items-center rounded bg-slate-100 text-slate-600 text-sm font-medium leading-none text-nowrap">
+            <ion-icon name="timer-outline" class="text-base"></ion-icon>
+            <span class="ml-1.5">{{ task.due_at | formatDate:3 }}</span>
         </div>
     </div>
 </div>
